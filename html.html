@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="UTF-8" />
+	<title>Homework</title>
+	<script>
+		function firstElement(){
+			var parent = document.getElementById('list');
+			var child = parent.firstElementChild;
+			child.style.color = 'red';
+		}
+
+		function lastElement(){
+			var parent = document.getElementById('list');
+			var child = parent.lastElementChild;
+			child.style.color = 'red';
+		}
+
+		function nextElement(){
+			var parent = document.getElementById('list');
+			var child = parent.getElementsByTagName('li');
+			for (var i = 0; i < child.length - 1; i++){
+				if (child[i].getAttribute('style') =="color: red;"){
+					child[i].removeAttribute('style');
+					child[i].nextElementSibling.style.color = 'red';
+					break;
+				}
+			}
+		}
+
+		function previousElement(){
+			var parent = document.getElementById('list');
+			var child = parent.getElementsByTagName('li');
+			for (var i = child.length - 1; i > 0; i--){
+				if(child[i].getAttribute('style') =="color: red;"){
+					child[i].removeAttribute('style');
+					child[i].previousElementSibling.style.color = 'red';
+					break;
+				}
+			}
+		}
+
+		function create(){
+			var parent = document.getElementById('list');
+			var create = document.createElement('li');
+			create.innerHTML = '<i>element</i>';
+			console.log(create);
+			parent.appendChild(create);
+		}
+
+		function remove(){
+			var parent = document.getElementById('list');
+			var child = parent.lastElementChild;
+			parent.removeChild(child);
+		}
+
+		function createFirstElement(){
+			var parent = document.getElementById('list');
+			var child = parent.firstElementChild;
+			var create = document.createElement('li');
+			create.innerHTML = '<b>element</b>';
+			parent.insertBefore(create, child);
+		}
+	</script>
+</head>
+<body>
+	<div id="header">
+		<ul id="list">
+			<li>element</li>
+			<li>element</li>
+			<li>element</li>
+			<li>element</li>
+			<li>element</li>
+		</ul>
+	</div>
+	<div id="buttons">
+		<input type="button" onclick="firstElement()" value="выбрать первый элемент">
+		<input type="button" onclick="lastElement()" value=" Выбрать последний элемент">
+		<input type="button" onclick="nextElement()" value=" Выбрать следующий элемент">
+		<input type="button" onclick="previousElement()" value=" Выбрать предыдущий элемент">
+		<input type="button" onclick="create()" value="Добавить элемент в конец">
+		<input type="button" onclick="remove()" value="Удалить элемент">
+		<input type="button" onclick="createFirstElement()" value="Добавить в начало">
+
+	</div>
+
+</body>
+</html>
